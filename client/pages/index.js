@@ -1,18 +1,35 @@
+import { useState } from 'react';
 import Head from 'next/head';
-import media from 'lib/media';
 
 const Home = () => {
-  const handleSubmit = (e) => {
+  const [email, setEmail] = useState('');
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Hello');
+    const data = await fetch(`http://localhost:4000`, {
+      method: 'post',
+      body: [`${encodeURIComponent('email')}=${encodeURIComponent(email)}}`],
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      }
+    });
+    const response = await data.json();
+    if (response._id) {
+      setSent(true);
+    }
   };
+
+  const handleChange = ({ target: { value } }) => {
+    setEmail(value)
+  };
+
   return (
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main>
         <h1 className="title">
           BIKINIBAG
@@ -23,10 +40,15 @@ const Home = () => {
         </p>
         <form onSubmit={handleSubmit}>
           <label htmlFor="field2">
-            <input placeholder="email" className="input-field" name="field2" />
+            <input value={email} onChange={handleChange} placeholder="email" type="email" className="input-field" name="field2" />
           </label>
-          <button type="submit" className="sign-up">Sign up today</button>
+          <button type="submit" className="sign-up">Notify me!</button>
         </form>
+        {sent && (
+          <p className="description">
+            SEE YOU SOON!
+          </p>
+        )}
       </main>
 
       <style jsx>{`

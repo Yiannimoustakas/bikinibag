@@ -1,5 +1,5 @@
 import App from 'next/app';
-import Page from 'components/shared/Page';
+import Page from '../src/components/shared/Page';
 
 class MyApp extends App {
 
