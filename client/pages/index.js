@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div className="container">
       <Head>
-        <title>Bikini Bag</title>
+        <title>BIKINIBAG</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
