@@ -20,12 +20,15 @@ mongoose.connect(
     dbName: process.env.DB_NAME,
     useNewUrlParser: true,
     autoIndex: false,
+    useCreateIndex: true,
     useUnifiedTopology: true
   }
-).catch((err) => {
-  console.log('Mongoose error:', err);
-  return err;
-});
+)
+  .then(() => console.log('DB Connected!'))
+  .catch((err) => {
+    console.log('Mongoose error:', err);
+    return err;
+  });
 
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
