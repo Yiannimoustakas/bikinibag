@@ -7,7 +7,7 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await fetch(`http://localhost:4000`, {
+    const data = await fetch(`https://bikinibag.herokuapp.com/`, {
       method: 'post',
       body: [`${encodeURIComponent('email')}=${encodeURIComponent(email)}}`],
       headers: {
@@ -15,6 +15,7 @@ const Home = () => {
       }
     });
     const response = await data.json();
+    console.log('response:', response);
     if (response._id) {
       setSent(true);
     }

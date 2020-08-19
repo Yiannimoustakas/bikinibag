@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: process.env.ORIGIN,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
